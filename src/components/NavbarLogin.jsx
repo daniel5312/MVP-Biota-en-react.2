@@ -22,11 +22,11 @@ const NavbarLogin = () => {
       {/* Menú de navegación */}
       <nav className="navba-login">
         <button onClick={handleLogout} className="logout-btn">
-            <Link to="/login"></Link>
+            <Link to="/register"></Link>
           Register
         </button>
         <button onClick={handleLogout} className="logout-btn">
-            <Link to="/register"></Link>
+            <Link to="/Home"></Link>
          Login
         </button>
       </nav>
