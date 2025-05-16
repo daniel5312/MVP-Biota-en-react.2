@@ -1,102 +1,65 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import NavbarLogin from "../components/NavbarLogin";
-
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Estado para manejar errores simples
   const [error, setError] = useState("");
-
-  // useNavigate nos permite redirigir al usuario
   const navigate = useNavigate();
 
-  // Función que se ejecuta cuando se envía el formulario
   const handleSubmit = (e) => {
-  e.preventDefault(); // Evita recargar la página
+    e.preventDefault();
 
-    if (email.trim() === "" || password.trim() === "") {
-        setError("Todos los campos son obligatorios.");
-        return;
-    }
-
-    // Obtenemos los usuarios registrados desde localStorage
     const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Buscamos si hay un usuario que coincida
     const userFound = users.find(
-        (user) => user.email === email && user.password === password
+      (u) => u.email === email && u.password === password
     );
 
     if (userFound) {
-        // Si el usuario existe, guardamos en localStorage que está logueado
-        localStorage.setItem("auth", "true");
-
-        // Redirigimos a /home
-        navigate("/home");
+      localStorage.setItem("auth", "true");
+      localStorage.setItem("user", JSON.stringify(userFound));
+      navigate("/tienda");
     } else {
-        // Si no lo encuentra, muestra error
-        setError("Credenciales inválidas.");
+      setError("Credenciales inválidas.");
     }
-};
-    
-return (
-    <>
-    <NavbarLogin />
-     <div className="login-container" style={{ maxWidth: "400px", margin: "5rem auto", border: "1px solid #ccc", padding: "2rem", borderRadius: "8px" }}>
-      {/* Título del formulario */}
-      <h2 style={{ textAlign: "center" }}>Iniciar Sesión</h2>
+  };
 
-      {/* Muestra un mensaje de error si existe */}
-      {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+  return (
+    <div className="container mt-5" style={{ maxWidth: "400px" }}>
+      <h2 className="text-center">Iniciar sesión</h2>
+      {error && <p className="text-danger text-center">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        {/* Campo de correo */}
-        <div className="form-group">
-          <label htmlFor="email">Correo electrónico:</label>
+        <div className="form-group mb-3">
+          <label>Email:</label>
           <input
             type="email"
-            id="email"
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        {/* Campo de contraseña */}
-        <div className="form-group" style={{ marginTop: "1rem" }}>
-          <label htmlFor="password">Contraseña:</label>
+        <div className="form-group mb-3">
+          <label>Contraseña:</label>
           <input
             type="password"
-            id="password"
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        {/* Botón para iniciar sesión */}
-        <button
-          type="submit"
-          style={{ marginTop: "1.5rem", width: "100%" }}
-        >
+        <button className="btn btn-success w-100" type="submit">
           Ingresar
         </button>
-        
-        {/* Enlace para ir a la página de registro */}
-        <p style={{ textAlign: "center", marginTop: "1rem" }}>
-        ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
+
+        <p className="mt-3 text-center">
+          ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
         </p>
       </form>
-
     </div>
-    </>
-    
-   
   );
 };
-export default Login
+
+export default Login;
