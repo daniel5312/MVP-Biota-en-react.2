@@ -4,6 +4,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import Tienda from "./pages/Tienda";
+import Perfil from "./pages/Perfil.jsx";
 
 
 const App = () => {

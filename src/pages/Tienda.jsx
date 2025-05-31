@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import products from "../data/products.js";
 import NavbarApp from "../components/NavbarApp.jsx";
 
 const Tienda = () => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("auth") === "true";
@@ -13,12 +12,8 @@ const Tienda = () => {
 
     if (!isLoggedIn || !userStored) {
       navigate("/login");
-      return null;
-    } else {
-      setUser(userStored);
     }
   }, []);
-
   return (
     <>
     <NavbarApp />
