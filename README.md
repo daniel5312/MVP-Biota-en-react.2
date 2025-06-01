@@ -2,6 +2,46 @@
 
 Biota Orgánicos es una plataforma de e-commerce que conecta consumidores con productores locales de alimentos orgánicos en Caldas, Antioquia. Este proyecto es un Producto Mínimo Viable (MVP) desarrollado con fines educativos usando React y JavaScript moderno.
 
+# Biota Orgánicos 🌿
+
+**Biota Orgánicos** es un MVP (Producto Mínimo Viable) de una plataforma e-commerce desarrollada con React, que busca conectar a consumidores con productores de alimentos orgánicos bajo principios de agricultura regenerativa.
+
+---
+
+## 🧩 Características
+
+- ✅ Registro e inicio de sesión con localStorage
+- ✅ Rutas protegidas según el rol (`consumidor` / `productor`)
+- ✅ Página de tienda con productos combinados (estáticos y agregados por productores)
+- ✅ Detalles individuales del producto
+- ✅ Perfil del productor y listado de sus productos
+- ✅ Agregar productos desde el rol productor
+- ✅ Navegación protegida con React Router DOM
+- ✅ Estilos con CSS puro
+
+---
+
+## 🚀 Tecnologías usadas
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [React Router DOM](https://reactrouter.com/)
+- JavaScript moderno (ES6+)
+- HTML + CSS puro
+- `localStorage` para simular persistencia de datos
+
+---
+
+## 📁 Estructura de carpetas
+
+```bash
+/src
+├── components/          # Componentes reutilizables como NavbarApp
+├── data/                # Datos base como products.js
+├── pages/               # Vistas: Login, Home, Tienda, ProductoDetalle, etc.
+├── styles/              # Estilos globales o por componente
+├── App.jsx              # Definición de rutas
+└── main.jsx             # Punto de entrada
 
 ---
 
@@ -89,9 +129,7 @@ En futuras versiones se integrará un panel de administración, carga de product
 
 ---
 
-¿Quieres que te ayude a subir esto a GitHub y hacer el primer commit/documentación?
 
- + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
