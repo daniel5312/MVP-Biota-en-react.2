@@ -24,8 +24,18 @@ const NavbarApp = () => {
         <Link to="/tienda" className="navbar-link">
           Tienda
         </Link>
-      </div>
 
+        {user?.rol === "productor" && (
+        <Link className="navbar-link" to="/agregar-producto">
+          Agregar Producto</Link>
+        )}
+
+        {user?.rol === "productor" && (
+        <Link className="nav-link" to="/panel-productor">Mi Panel</Link>
+        )}
+
+      </div>
+      
       <div className="navbar-right">
         {user && (
           <span className="navbar-user">

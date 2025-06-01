@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../pages/Register";
 //import "./Sidebar.css"; // Estilos personalizados del sidebar
 
 const NavbarLogin = () => {
@@ -22,8 +23,8 @@ const NavbarLogin = () => {
       {/* Menú de navegación */}
       <nav className="navba-login">
         <button onClick={handleLogout} className="logout-btn">
-            <Link to="/register"></Link>
-          Register
+            <Link to="/register">Registrate</Link>
+          
         </button>
         <button onClick={handleLogout} className="logout-btn">
             <Link to="/Home"></Link>

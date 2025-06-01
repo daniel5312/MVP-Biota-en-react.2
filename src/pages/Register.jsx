@@ -5,6 +5,11 @@ const Register = () => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [rol, setRol] = useState("consumidor");
+  const [finca, setFinca] = useState("");
+  const [municipio, setMunicipio] = useState("");
+  const [vereda, setVereda] = useState("");
+  const [productos, setProductos] = useState("");
+  const [etapa, setEtapa] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -17,7 +22,20 @@ const Register = () => {
       return;
     }
 
-    const newUser = { nombre, email, password, rol };
+        const newUser = {
+      nombre,
+      email,
+      password,
+      rol,
+      ...(rol === "productor" && {
+        finca,
+        municipio,
+        vereda,
+        productos,
+        etapa,
+      })
+    };
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
@@ -68,10 +86,67 @@ const Register = () => {
             value={rol}
             onChange={(e) => setRol(e.target.value)}
           >
+            
             <option value="consumidor">Consumidor</option>
             <option value="productor">Productor</option>
+            
           </select>
-        </div>
+          {/* Campos adicionales si es productor */}
+          {rol === "productor" && (
+            <>
+              <div className="form-group mb-3">
+                <label>Finca:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={finca}
+                  onChange={(e) => setFinca(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-3">
+                <label>Municipio:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={municipio}
+                  onChange={(e) => setMunicipio(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-3">
+                <label>Vereda:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={vereda}
+                  onChange={(e) => setVereda(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-3">
+                <label>Productos:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={productos}
+                  onChange={(e) => setProductos(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-3">
+                <label>Etapa:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={etapa}
+                  onChange={(e) => setEtapa(e.target.value)}
+                />
+              </div>
+            </>
+          )}
+      </div>
+        
 
         <button className="btn btn-primary w-100" type="submit">
           Registrarse

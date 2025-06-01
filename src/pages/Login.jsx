@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../components/NavbarLogin";
+import NavbarLogin from "../components/NavbarLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,13 +20,15 @@ const Login = () => {
     if (userFound) {
       localStorage.setItem("auth", "true");
       localStorage.setItem("user", JSON.stringify(userFound));
-      navigate("/tienda");
+      navigate("/home");
     } else {
       setError("Credenciales inválidas.");
     }
   };
 
   return (
+    <>
+    <NavbarLogin />
     <div className="container mt-5" style={{ maxWidth: "400px" }}>
       <h2 className="text-center">Iniciar sesión</h2>
       {error && <p className="text-danger text-center">{error}</p>}
@@ -59,6 +63,7 @@ const Login = () => {
         </p>
       </form>
     </div>
+  </>
   );
 };
 

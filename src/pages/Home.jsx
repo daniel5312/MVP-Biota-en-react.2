@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavbarApp from "../components/NavbarApp";
 import "../styles/Home.css"
 
+
 const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -30,21 +31,27 @@ const Home = () => {
       <div className="container mt-5">
       {user && (
         <>
+          <img src="" alt="" />
           <h1>Bienvenido, {user.nombre}</h1>
           <p>Rol: {user.rol}</p>
-          <button className="btn btn-danger" onClick={handleLogout}>
+          <button className="btn btn-dark" onClick={handleLogout}>
             Cerrar sesión
           </button>
         </>
       )}
     </div>
-    <div className="perfil-seccion">
-        <h2>Mi perfil</h2>
+    <div className="perfil-section">
+        
         {user && (
             <>
             <p><strong>Nombre:</strong> {user.nombre}</p>
             <p><strong>Correo:</strong> {user.email}</p>
             <p><strong>Rol:</strong> {user.rol}</p>
+            <p><strong>Finca:</strong>{user.finca}</p>
+            <p><strong>Municipio:</strong>{user.municipio}</p>
+            <p><strong>Vereda:</strong>{user.vereda}</p>
+            <p><strong>Productos:</strong>{user.productos}</p>
+             <p><strong>Etapa:</strong>{user.etapa}</p>
 
             {user.rol === "productor" && (
                 <div className="productor-section">
@@ -52,11 +59,13 @@ const Home = () => {
                 <p>Aquí podrías cargar tus productos o mostrar tu finca.</p>
                 </div>
             )}
+            
 
             {user.rol === "consumidor" && (
                 <div className="consumidor-section">
                 <h3>Opciones para Consumidores</h3>
                 <p>Explora productos, haz pedidos, guarda favoritos...</p>
+                
                 </div>
             )}
             </>

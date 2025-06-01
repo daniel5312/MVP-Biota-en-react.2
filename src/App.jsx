@@ -1,11 +1,14 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Router } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import Tienda from "./pages/Tienda";
-import Perfil from "./pages/Perfil.jsx";
-
+import AgregarProducto from "./pages/AgregarProducto.jsx";
+import ProductoDetalle from "./pages/ProductoDetalle.jsx";
+import ProductorDetalle from "./pages/ProductorDetalle.jsx";
+import PanelProductor from "./pages/PanelProductor.jsx";
+import EditarProducto from "./pages/EditarProducto.jsx";
 
 const App = () => {
   return (
@@ -21,7 +24,12 @@ const App = () => {
       <Route path="/tienda" element={<Tienda />} />
 
       <Route path="/home" element={<Home />} />
-
+      <Route path="/agregar-producto" element={<AgregarProducto />} />  
+      
+      <Route path="/producto/:id" element={<ProductoDetalle />} />
+      <Route path="/productor/:email" element={<ProductorDetalle />} />
+      <Route path="/panel-productor" element={<PanelProductor />} />
+      <Route path="/editar-producto/:id" element={<EditarProducto />} />
 
       {/* Si la ruta no existe */}
       <Route path="*" element={<Navigate to="/login" />} />
