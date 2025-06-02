@@ -14,33 +14,46 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  // Maneja el envío del formulario
+  const handleRegister = async (e) => {
     e.preventDefault();
 
+    // Validar campos obligatorios
     if (!nombre || !email || !password) {
-      setError("Todos los campos son obligatorios.");
+      setError("Nombre, correo y contraseña son obligatorios.");
       return;
     }
 
-        const newUser = {
+    const nuevoUsuario = {
       nombre,
       email,
       password,
       rol,
-      ...(rol === "productor" && {
-        finca,
-        municipio,
-        vereda,
-        productos,
-        etapa,
-      })
+      finca: rol === "productor" ? finca : "",
+      municipio: rol === "productor" ? municipio : "",
+      vereda: rol === "productor" ? vereda : "",
+      productos: rol === "productor" ? productos : "",
+      etapa: rol === "productor" ? etapa : "",
     };
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
+    try {
+      const res = await fetch("http://localhost:8090/api/usuarios/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nuevoUsuario),
+      });
 
-    navigate("/login");
+      if (res.ok) {
+        navigate("/login");
+      } else {
+        const data = await res.json();
+        setError(data.message || "Error al registrar.");
+        console.error("Error:", data);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Error al conectar con el servidor.");
+    }
   };
 
   return (
@@ -86,67 +99,64 @@ const Register = () => {
             value={rol}
             onChange={(e) => setRol(e.target.value)}
           >
-            
             <option value="consumidor">Consumidor</option>
             <option value="productor">Productor</option>
-            
           </select>
-          {/* Campos adicionales si es productor */}
-          {rol === "productor" && (
-            <>
-              <div className="form-group mb-3">
-                <label>Finca:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={finca}
-                  onChange={(e) => setFinca(e.target.value)}
-                />
-              </div>
+        </div>
 
-              <div className="form-group mb-3">
-                <label>Municipio:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={municipio}
-                  onChange={(e) => setMunicipio(e.target.value)}
-                />
-              </div>
+        {rol === "productor" && (
+          <>
+            <div className="form-group mb-3">
+              <label>Finca:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={finca}
+                onChange={(e) => setFinca(e.target.value)}
+              />
+            </div>
 
-              <div className="form-group mb-3">
-                <label>Vereda:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={vereda}
-                  onChange={(e) => setVereda(e.target.value)}
-                />
-              </div>
+            <div className="form-group mb-3">
+              <label>Municipio:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={municipio}
+                onChange={(e) => setMunicipio(e.target.value)}
+              />
+            </div>
 
-              <div className="form-group mb-3">
-                <label>Productos:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={productos}
-                  onChange={(e) => setProductos(e.target.value)}
-                />
-              </div>
+            <div className="form-group mb-3">
+              <label>Vereda:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={vereda}
+                onChange={(e) => setVereda(e.target.value)}
+              />
+            </div>
 
-              <div className="form-group mb-3">
-                <label>Etapa:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={etapa}
-                  onChange={(e) => setEtapa(e.target.value)}
-                />
-              </div>
-            </>
-          )}
-      </div>
-        
+            <div className="form-group mb-3">
+              <label>Productos que cultiva:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={productos}
+                onChange={(e) => setProductos(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group mb-3">
+              <label>Etapa del cultivo:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={etapa}
+                onChange={(e) => setEtapa(e.target.value)}
+              />
+            </div>
+          </>
+        )}
 
         <button className="btn btn-primary w-100" type="submit">
           Registrarse
