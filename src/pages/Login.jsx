@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../components/NavbarLogin";
+import { iniciarSesion } from "../services/api"; // ✅ Importa tu función
 import NavbarLogin from "../components/NavbarLogin";
 
 const Login = () => {
@@ -9,61 +9,65 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const userFound = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    try {
+      const resultado = await iniciarSesion({ email, password }); // ✅ Llama al backend
 
-    if (userFound) {
+      console.log("Usuario autenticado:", resultado);
+
+      // ✅ Guarda sesión local y redirige
       localStorage.setItem("auth", "true");
-      localStorage.setItem("user", JSON.stringify(userFound));
+      localStorage.setItem("user", JSON.stringify(resultado));
+
       navigate("/home");
-    } else {
-      setError("Credenciales inválidas.");
+    } catch (err) {
+      console.error("Error de login:", err.message);
+      setError("Credenciales inválidas o error de conexión.");
     }
   };
 
   return (
     <>
-    <NavbarLogin />
-    <div className="container mt-5" style={{ maxWidth: "400px" }}>
-      <h2 className="text-center">Iniciar sesión</h2>
-      {error && <p className="text-danger text-center">{error}</p>}
+      <NavbarLogin />
+      <div className="container mt-5" style={{ maxWidth: "400px" }}>
+        <h2 className="text-center">Iniciar sesión</h2>
+        {error && <p className="text-danger text-center">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group mb-3">
-          <label>Email:</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label>Email:</label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <div className="form-group mb-3">
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <div className="form-group mb-3">
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <button className="btn btn-success w-100" type="submit">
-          Ingresar
-        </button>
+          <button className="btn btn-success w-100" type="submit">
+            Ingresar
+          </button>
 
-        <p className="mt-3 text-center">
-          ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
-        </p>
-      </form>
-    </div>
-  </>
+          <p className="mt-3 text-center">
+            ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
+          </p>
+        </form>
+      </div>
+    </>
   );
 };
 
