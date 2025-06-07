@@ -1,6 +1,8 @@
 // src/services/api.js
 
+
 const API_URL = "http://localhost:8090/api";
+{/*const API_URL = "http://localhost:8000/api";*/}
 
 // ✅ Ya tienes esta función
 export const registrarUsuario = async (datos) => {

@@ -17,7 +17,7 @@ const Home = () => {
     } else {
       setUser(userStored);
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("auth");
@@ -56,7 +56,7 @@ const Home = () => {
             {user.rol === "productor" && (
                 <div className="productor-section">
                 <h3>Información para Productores</h3>
-                <p>Aquí podrías cargar tus productos o mostrar tu finca.</p>
+                <p>Productos y Finca.</p>
                 </div>
             )}
             
