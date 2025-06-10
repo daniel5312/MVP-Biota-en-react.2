@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { iniciarSesion } from "../services/api"; // ✅ Importa tu función
+import { iniciarSesion } from "../services/api"; // mporta tu función
 import NavbarLogin from "../components/NavbarLogin";
 
 const Login = () => {
@@ -13,11 +13,11 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const resultado = await iniciarSesion({ email, password }); // ✅ Llama al backend
+      const resultado = await iniciarSesion({ email, password }); // Llama al backend
 
       console.log("Usuario autenticado:", resultado);
 
-      // ✅ Guarda sesión local y redirige
+      // Guarda sesión local y redirige
       localStorage.setItem("auth", "true");
       localStorage.setItem("user", JSON.stringify(resultado));
 

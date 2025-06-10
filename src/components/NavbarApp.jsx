@@ -25,6 +25,10 @@ const NavbarApp = () => {
           Tienda
         </Link>
 
+        <Link to="/usuarios" className="nav-link">
+          Lista de Usuarios
+        </Link>
+
         {user?.rol === "productor" && (
         <Link className="navbar-link" to="/agregar-producto">
           Agregar Producto</Link>

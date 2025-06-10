@@ -9,6 +9,9 @@ import ProductoDetalle from "./pages/ProductoDetalle.jsx";
 import ProductorDetalle from "./pages/ProductorDetalle.jsx";
 import PanelProductor from "./pages/PanelProductor.jsx";
 import EditarProducto from "./pages/EditarProducto.jsx";
+import UsuariosList from "./pages/UsuariosList";
+import EditarUsuario from "./pages/EditarUsuario.jsx"
+
 
 const App = () => {
   return (
@@ -30,6 +33,8 @@ const App = () => {
       <Route path="/productor/:email" element={<ProductorDetalle />} />
       <Route path="/panel-productor" element={<PanelProductor />} />
       <Route path="/editar-producto/:id" element={<EditarProducto />} />
+      <Route path="/usuarios" element={<UsuariosList />} />
+      <Route path="/usuarios/editar/:id" element={<EditarUsuario />} />
 
       {/* Si la ruta no existe */}
       <Route path="*" element={<Navigate to="/login" />} />
