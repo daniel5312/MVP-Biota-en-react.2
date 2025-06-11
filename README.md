@@ -5,12 +5,40 @@ Biota Orgánicos es una plataforma de e-commerce que conecta consumidores con pr
 # Biota Orgánicos 🌿
 
 **Biota Orgánicos** es un MVP (Producto Mínimo Viable) de una plataforma e-commerce desarrollada con React, que busca conectar a consumidores con productores de alimentos orgánicos bajo principios de agricultura regenerativa.
+# 🌱 Biota Orgánicos - Frontend
+
+Este es el **frontend** de la aplicación **Biota Orgánicos**, una plataforma web que conecta consumidores con productores de agricultura regenerativa y orgánica en Colombia.
+
+Desarrollado con **React + Vite** y conectado a un backend en **Spring Boot**, este sistema permite registrar, autenticar y administrar usuarios (productores y consumidores), así como visualizar y gestionar productos agrícolas de forma intuitiva.
+
+---
+
+## 📦 Tecnologías utilizadas
+
+### Frontend:
+- ⚛️ React
+- ⚡ Vite
+- 🎨 Bootstrap 5
+- 📡 Fetch API
+- 🧠 LocalStorage
+
+### Backend (en otro repositorio):
+- ☕ Spring Boot 3.5
+- 🐘 MySQL (phpMyAdmin / XAMPP)
+- 🧰 JPA + Hibernate
+- 🔐 CORS + login básico
+- 🚀 Maven
+
+---
+
+## 📁 Estructura de Carpetas (Frontend)
+
 
 ---
 
 ## 🧩 Características
 
-- ✅ Registro e inicio de sesión con localStorage
+- ✅ Registro e inicio de sesión con localStorage y springBoot
 - ✅ Rutas protegidas según el rol (`consumidor` / `productor`)
 - ✅ Página de tienda con productos combinados (estáticos y agregados por productores)
 - ✅ Detalles individuales del producto
@@ -34,7 +62,7 @@ Biota Orgánicos es una plataforma de e-commerce que conecta consumidores con pr
 
 ## 📁 Estructura de carpetas
 
-```bash
+
 /src
 ├── components/          # Componentes reutilizables como NavbarApp
 ├── data/                # Datos base como products.js
