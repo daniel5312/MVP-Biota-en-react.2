@@ -26,7 +26,7 @@ const EditarProducto = () => {
     } else {
       setProducto(encontrado);
     }
-  }, [id]);
+  }, [id, navigate, user]);
 
   // Convertir archivo a base64
   const handleImagenChange = (e) => {
