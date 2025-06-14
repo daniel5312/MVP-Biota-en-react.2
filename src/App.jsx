@@ -11,6 +11,7 @@ import PanelProductor from "./pages/PanelProductor.jsx";
 import EditarProducto from "./pages/EditarProducto.jsx";
 import UsuariosList from "./pages/UsuariosList";
 import EditarUsuario from "./pages/EditarUsuario.jsx"
+import Estadisticas from "./pages/Estadisticas";
 
 
 const App = () => {
@@ -35,9 +36,9 @@ const App = () => {
       <Route path="/editar-producto/:id" element={<EditarProducto />} />
       <Route path="/usuarios" element={<UsuariosList />} />
       <Route path="/usuarios/editar/:id" element={<EditarUsuario />} />
-
       {/* Si la ruta no existe */}
       <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/estadisticas" element={<Estadisticas />} />
     </Routes>
   );
 };

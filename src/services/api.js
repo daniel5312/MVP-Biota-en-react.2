@@ -62,3 +62,11 @@ export const eliminarUsuario = async (id) => {
   });
   return res.json();
 };
+
+export const obtenerEstadisticas = async () => {
+  const res = await fetch(`${API_URL}/estadisticas`);
+  if (!res.ok) {
+    throw new Error("Error al obtener estadísticas");
+  }
+  return res.json();
+};
