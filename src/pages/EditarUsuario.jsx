@@ -21,7 +21,7 @@ const EditarUsuario = () => {
 
   // Obtener datos del usuario por ID
   useEffect(() => {
-    fetch(`http://localhost:8090/api/usuarios/${id}`)
+    fetch(`http://localhost:8000/api/usuarios/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Usuario no encontrado");
         return res.json();
@@ -39,7 +39,7 @@ const EditarUsuario = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:8090/api/usuarios/${id}`, {
+      const res = await fetch(`http://localhost:8000/api/usuarios/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usuario),

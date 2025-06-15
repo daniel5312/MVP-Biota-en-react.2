@@ -49,6 +49,12 @@ const NavbarApp = () => {
         <button className="logout-btn" onClick={handleLogout}>
           Cerrar sesión
         </button>
+        <Link to="/estadisticas" className="btn btn-info m-2">
+          Ver Estadísticas
+        </Link>
+        <Link to="/estadisticas-graficas">📊 Ver Gráficas</Link>
+
+
       </div>
     </nav>
   );

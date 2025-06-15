@@ -15,7 +15,7 @@ const PanelProductor = () => {
     const all = JSON.parse(localStorage.getItem("products")) || [];
     const propios = all.filter(p => p.productorId === user.email);
     setProductos(propios);
-  }, []);
+  }, [navigate, user]);
 
   return (
     <>

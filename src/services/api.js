@@ -2,7 +2,7 @@
 
 
 {/*const API_URL = "http://localhost:8090/api";*/}
-const API_URL = "http://localhost:8090/api";
+const API_URL = "http://localhost:8000/api";
 // Registrar usuario
 export const registrarUsuario = async (datos) => {
   const res = await fetch(`${API_URL}/usuarios/register`, {
