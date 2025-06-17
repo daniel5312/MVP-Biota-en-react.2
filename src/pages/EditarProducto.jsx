@@ -146,6 +146,9 @@ const EditarProducto = () => {
           )}
 
           <button type="submit" className="btn btn-primary w-100">Actualizar producto</button>
+          <Link to={`/editar-producto/${producto.id}`} className="btn btn-warning w-100">
+                      Editar
+          </Link>
         </form>
       </div>
     </>

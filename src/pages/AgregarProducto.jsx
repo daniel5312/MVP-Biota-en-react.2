@@ -11,7 +11,7 @@ const AgregarProducto = () => {
     if (!user || user.rol !== "productor") {
       navigate("/home");
     }
-  }, []);
+  }, [navigate, user]);
 
   // 🎯 Estados del formulario
   const [nombre, setNombre] = useState("");
