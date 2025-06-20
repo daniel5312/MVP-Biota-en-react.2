@@ -28,7 +28,7 @@ const ProductoDetalle = () => {
       const dueño = usuarios.find((u) => u.email === encontrado.productorId);
       setProductor(dueño || null);
     }
-  }, [id]);
+  }, [id, navigate]);
 
   if (!producto) return null;
 

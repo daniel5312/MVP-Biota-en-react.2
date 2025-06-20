@@ -28,6 +28,7 @@ const Home = () => {
   return (
     <>
     <NavbarApp />  
+    
       <div className="container mt-5">
       {user && (
         <>
@@ -40,9 +41,11 @@ const Home = () => {
         </>
       )}
     </div>
+    
     <div className="perfil-section">
         
         {user && (
+              
             <>
             <p><strong>Nombre:</strong> {user.nombre}</p>
             <p><strong>Correo:</strong> {user.email}</p>
@@ -67,6 +70,7 @@ const Home = () => {
                 <p>Explora productos, haz pedidos, guarda favoritos...</p>
                 
                 </div>
+                
             )}
             </>
         )}

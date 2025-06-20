@@ -25,7 +25,7 @@ const ProductorDetalle = () => {
       const productosFiltrados = todos.filter((p) => p.productorId === email);
       setProductos(productosFiltrados);
     }
-  }, [email]);
+  }, [email, navigate]);
 
   if (!productor) return null;
 

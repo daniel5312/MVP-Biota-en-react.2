@@ -31,13 +31,39 @@ const Register = () => {
     };
 
     try {
-      const resultado = await registrarUsuario(nuevoUsuario);
-      console.log("Usuario registrado:", resultado);
-      navigate("/login");
-    } catch (err) {
-      console.error("Error:", err.message);
-      setError("Error al registrar usuario");
-    }
+  const resultado = await registrarUsuario(nuevoUsuario);
+  console.log("Usuario registrado:", resultado);
+
+  // ✅ SI ES PRODUCTOR, guardar el producto en localStorage
+  if (nuevoUsuario.rol === "productor" && nuevoUsuario.productos.trim() !== "") {
+    const productosRegistrados = nuevoUsuario.productos.split(",").map(p => p.trim());
+
+    const productosExistentes = JSON.parse(localStorage.getItem("products")) || [];
+
+    productosRegistrados.forEach(producto => {
+      const nuevoProducto = {
+        id: Date.now() + Math.random(), // ID temporal
+        nombre: producto,
+        descripcion: "Agregado automáticamente al registrar",
+        precio: 0,
+        etapa: nuevoUsuario.etapa || "",
+        fichaTecnica: "",
+        productorId: resultado.email,
+        imagen: "https://via.placeholder.com/300x200?text=Producto",
+      };
+
+      productosExistentes.push(nuevoProducto);
+    });
+
+    localStorage.setItem("products", JSON.stringify(productosExistentes));
+  }
+
+  navigate("/login");
+} catch (err) {
+  console.error("Error:", err.message);
+  setError("Error al registrar usuario");
+}
+
   };
 
   return (

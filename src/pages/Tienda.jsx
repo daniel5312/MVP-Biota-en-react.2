@@ -16,7 +16,7 @@ const Tienda = () => {
     if (!isLoggedIn || !userStored) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   // Cargar productos (combinados)
   useEffect(() => {
@@ -42,6 +42,7 @@ const Tienda = () => {
                   <Link to={`/producto/${producto.id}`} className="btn btn-success">
                     Ver más
                   </Link>
+                  <Link to={`/perfil-productor/${producto.productor}`} className="btn"> Productores</Link>
                 </div>
               </div>
             </div>
